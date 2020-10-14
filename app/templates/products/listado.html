@@ -1,0 +1,35 @@
+{% extends 'layaouts/tienda.html' %}
+
+{% load cart_tags %}
+
+{% block title %}Tienda{% endblock %}
+{% block content %}
+
+    Total: Q {{ cart_total_amount|money_format:".0" }}
+
+    <div class="row">
+        <div class="col-9">
+            <div class="row">
+                {% for producto in productos %}
+                    <div class="col-md-3 col-sm-12 col-lg-4">
+                        <div class="card" style="width: 100%">
+                            <img src="{{ producto.image.url }}" style="width: 100%;" class="card-img-top" alt="{{ producto.nombre }}"/>
+                            <h5 class="card-title">{{ producto.nombre }}</h5>
+                            <p class="card-text">{{ producto.Descripcion }}</p>
+                            <p class="card-text">{{ producto.precio }}</p>
+                        </div>
+                        <div class="card-footer text-center">
+                            <a href="{% url 'cart:add_producto' producto.id %}" class="btn btn-success">Anadir venta</a>
+
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+        <div class="col-3">
+            {% include "cart/widget.html" %}
+        </div>
+
+    </div>
+{% endblock %}

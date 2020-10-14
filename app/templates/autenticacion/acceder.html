@@ -1,0 +1,11 @@
+{% extends 'layaouts/tienda.html' %}
+{% block title %}Acceder{% endblock %}
+{% block content %}
+    {% load crispy_forms_tags %}
+    <form method="POST"action="" class="mt-2" autocomplete="off">
+        {% csrf_token %}
+        {{ form|crispy }}
+    <button type="submit" class="btn btn-success">Iniciar Sesion</button>
+    </form>
+
+{% endblock %}
